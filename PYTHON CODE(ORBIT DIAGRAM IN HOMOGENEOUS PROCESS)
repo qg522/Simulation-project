@@ -1,0 +1,12 @@
+lam = 1.5  # SET INTENSITY OF POISSON PROCESS
+n = 10  # SET NUMBER OF EVENTS
+# GENERATE 10 RANDOM NUMBERS
+r = np.random.exponential(1 / lam, size=n)
+# THE TIMELINE OF 10 EVENTS
+t = np.hstack([[0], np.cumsum(r)])
+# DRAW THE ORBIT DIAGRAM
+for i in range(n):
+    plt.plot((t[i], t[i+1]), (i, i), c='r')
+plt.xlim([0, np.ceil(t.max())])
+plt.ylim([0, n])
+#COMMENT: In this case we use n random numbers Xi~exp(lambda) to obtain the occurrence time of n events(Using Si=X1+...+Xi)
