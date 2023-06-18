@@ -1,33 +1,34 @@
-%%% Part1 %%%
-Lambda = 20;  % Lambda:poisson(Lambda)
-u = unifrnd(0,1)
+%%% Part 1 %%%
+lambda = 20; % Rate of Poisson distribution: lambda
+u = rand(); % Generate a random number between 0 and 1
 M = 0;
-while u >= exp(-Lambda)
-    u = u*unifrnd(0,1);
-    M=M+1;
-end 
- 
-R = poissrnd(Lambda,1,M) 
-
-%%% Part2 %%%
-a = 0; c = 0;
-b = 100; d =100;
-e = 0; f = 100;     
-Nall = M;
-% A = [];
-% B = [];
-while M > 0         %scatter in the [0,100]*[0,100]
-    M = M-1;
-    u1 = unifrnd(0,1);
-    A(Nall-M) = (b-a)*u1;
-    u2 = unifrnd(0,1);
-    B(Nall-M) = (d-c)*u2;
-    u3 = unifrnd(0,1);
-    C(Nall-M) = (f-e)*u3;
-    figure(1)   
-    plot3(A(Nall-M),B(Nall-M),C(Nall-M),'r^');
-    hold on;
-    plot(A(Nall-M),B(Nall-M),'b.')
-    hold on
+while u >= exp(-lambda)
+u = u * rand(); % Update random number using uniform distribution
+M = M + 1;
 end
-grid on
+
+R = poissrnd(lambda, 1, M);
+
+%%% Part 2 %%%
+a = 0; c = 0;
+b = 100; d = 100;
+e = 0; f = 100;
+Nall = M;
+A = [];
+B = [];
+C = [];
+while M > 0 % Scatter within the range [0, 100] x [0, 100]
+M = M - 1;
+u1 = rand(); % Generate a random number between 0 and 1
+A(Nall - M) = (b - a) * u1;
+u2 = rand(); % Generate a random number between 0 and 1
+B(Nall - M) = (d - c) * u2;
+u3 = rand(); % Generate a random number between 0 and 1
+C(Nall - M) = (f - e) * u3;
+figure(1)
+plot3(A(Nall - M), B(Nall - M), C(Nall - M), 'r^');
+hold on;
+plot(A(Nall - M), B(Nall - M), 'b.');
+hold on;
+end
+grid on;
